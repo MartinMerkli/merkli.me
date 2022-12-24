@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block b_title %}Einstellungen - Konto{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}konto_nbe-1-1{% endblock %}
+{% block b_onload %}{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    <h2 class="centered">Einstellungen</h2>
+    <div class="konto-einstellungen_info"><p>Name: <b>{{ info_name }}</b> &ensp; ID: <i>#{{ info_id }}</i></p>
+    </div>
+    <div class="konto-einstellungen_password">
+        <h3>Passwort aktualisieren</h3>
+        <form action="/konto/einstellungen/passwort" method="post" class="calendar_input-form">
+            <p class="calendar_input-row">
+                <label for="konto-einstellungen_input-password" class="calendar_input-cell calendar_input-label">aktuelles Passwort: </label>
+                <input type="password" id="konto-einstellungen_input-password" class="calendar_input-field calendar_input-cell" name="password" required placeholder="****************" minlength="8" maxlength="128">
+            </p><p class="calendar_input-row">
+                <label for="konto-einstellungen_input-password2" class="calendar_input-cell calendar_input-label">neues Passwort: </label>
+                <input type="password" id="konto-einstellungen_input-password2" class="calendar_input-field calendar_input-cell" name="password_new" required placeholder="****************" minlength="8" maxlength="128">
+            </p><p class="calendar_input-row">
+                <label for="konto-einstellungen_input-password3" class="calendar_input-cell calendar_input-label">neues Passwort wiederholen: </label>
+                <input type="password" id="konto-einstellungen_input-password3" class="calendar_input-field calendar_input-cell" name="password_repeat" required placeholder="****************" minlength="8" maxlength="128">
+            </p><p class="calendar_input-row calendar_input-row-submit">
+                <input type="submit" class="calendar_input-submit calendar_input-cell" name="Ändern" value="Ändern">
+            </p>
+        </form>
+    </div>
+    <div class="konto-einstellungen_iframe">
+        <h3>iframe's</h3>
+        <p>Aktuell sind iframe's {{ iframe_current }}t. Mit iframe's wird die Vorschau der Dokumente erstellt.
+            Da einige Menschen keine iframe's nutzen möchten, lassen sie sich hier deaktivieren.</p>
+        <a href="/konto/einstellungen/aendern/iframe/{{ iframe_other }}en">iframe's {{ iframe_other }}en</a>
+    </div>
+    <div class="konto-einstellungen_platform">
+        <h3>Plattform</h3>
+        <p>Sie befinden sich zurzeit auf der Plattform {{ platform_current }}.</p>
+        <a href="/konto/einstellungen/aendern/plattform/{{ platform_other }}">Zu {{ platform_other }} ändern</a>
+    </div>
+    <div class="konto-einstellungen_theme">
+        <h3>Farbschema</h3>
+        <p>Aktuell ist {{ theme_current }} ausgewählt. Es sind folgende Farbschemen verfügbar:</p>
+        <ul>
+            {% for theme_element in theme_all %}
+                <li><p><a href="/konto/einstellungen/aendern/farbschema/{{ theme_element }}">{{ theme_element }}</a></p></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="konto-einstellungen_newsletter">
+        <h3>Benachrichtigungen</h3>
+        <p>Aktuell sind Benachrichtigungen per E-Mail {{ newsletter_current }}t.</p>
+        <a href="/konto/einstellungen/aendern/benachrichtigungen/{{ newsletter_other }}en">Benachrichtigungen {{ newsletter_other }}en</a>
+    </div>
+    <div class="konto-einstellungen_manual">
+        <p>Für das Löschen von Konten und dem Ändern der E-Mail-Adresse oder dem Namen kontaktieren Sie bitte den*die
+            Betreiber*in (die E-Mail-Adresse befindet sich im Impressum).</p>
+    </div>
+{% endblock %}

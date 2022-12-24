@@ -1,0 +1,451 @@
+html, body{
+    font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 120%;
+    background-color: §body_background-color§;
+    color: §body_color§;
+}
+a{
+    color: §a_color§;
+}
+.navbar{
+    font-size: 111%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+.navbar-top{
+    background-color: §navbar-top_background-color§;
+}
+.navbar-top-list{
+    cursor: pointer;
+    padding: 1.5%;
+    margin: 0;
+}
+.navbar-top-element{
+    display: inline;
+    padding: 8px;
+    background-color: §navbar-top-element_background-color§;
+    margin: 0.4%;
+    border-bottom-style: none;
+    border-width: 1px;
+    border-color: §navbar-top-element_border-color§;
+}
+.navbar-top-element:hover{
+    background-color: §navbar-top-element_hover_background-color§;
+}
+.navbar-bottom-list{
+    background-color: #000000;
+    cursor: pointer;
+    padding: 1.5%;
+    margin: 0;
+}
+.navbar-bottom-element{
+    display: inline-block;
+    padding: 8px;
+    background-color: §navbar-bottom-element_background-color§;
+    margin: 0.4%;
+    border-bottom-style: none;
+    border-width: 1px;
+    border-color: §navbar-bottom-element_border-color§;
+}
+.navbar-bottom-element:hover{
+    background-color: §navbar-bottom-element_hover_background-color§;
+}
+.navbar-line{
+    height: 1px;
+    border: 0;
+    border-top: 1px solid §navbar-line_border-top§;
+    margin: 0 16%;
+    padding: 0;
+}
+.navbar-account{
+    position: fixed;
+    top: 0;
+    right: 0;
+    text-align: center;
+    font-size: 72%;
+}
+.navbar-link{
+    text-decoration: none;
+    color: §navbar-link_color§;
+}
+.legal{
+    width: 100%;
+}
+.legal-list{
+    padding: 1.5%;
+    background-color: §legal-list_background-color§;
+    text-align: center;
+}
+.legal-element{
+    display: inline;
+    margin: 0 0.5%;
+}
+.legal-link{
+    color: §legal-link_color§;
+}
+.main{
+    min-height: 72vh;
+    margin: 15% 2% 6%;
+}
+.centered{
+    text-align: center;
+}
+.comments-container{
+    border: 1px solid §comments-container_border§;
+    gap: 2em;
+}
+.comments-element{
+    border: 1px solid §comments-element_border§;
+    margin: 0;
+}
+.comments-text{
+    margin: 0.5em;
+}
+
+/* index.html */
+.index-icons{
+    display: grid;
+    grid-template-columns: auto auto;
+    font-size: 200%;
+}
+.index-icon{
+    text-align: center;
+    padding: 16% 0;
+    cursor: pointer;
+}
+.inex-icon-g21m{
+    background-image: url("/static/images/index_g21m.png");
+    background-size: cover;
+}
+.index-icon-zitateliste{
+    background-image: url("/static/images/index_zitateliste.jpeg");
+    background-size: cover;
+}
+
+/* error.html */
+.error_main{
+    text-align: center;
+}
+
+/* g21m_aktivität.html */
+.activity_large-link{
+    font-size: 172%;
+    text-align: center;
+}
+.activity_title{
+    text-align: center;
+}
+
+/* g21m_kalender.html */
+.calendar_weekdays{
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
+    gap: 4px;
+    padding: 4px;
+    background-color: §calendar_weekdays_background-color§;
+}
+.calendar_weekday{
+    text-align: center;
+    min-height: 1em;
+}
+.calendar_calendar{
+    display: grid;
+    grid-template-columns: 14% 14% 14% 14% 14% 14% 14%;
+    gap: 4px;
+    padding: 4px;
+    background-color: §calendar_calendar_background-color§;
+}
+.calendar_day {
+    min-height: 6em;
+}
+.calendar_day-list{
+    list-style-type: none;
+    display: inline;
+    float: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.calendar_event{
+    border: 2px solid #dddddd;
+    margin-top: -2px;
+}
+#calendar_selected{
+    color: §calendar_selected_color§;
+}
+#calendar_not-selected{
+    color: §calendar_not-selected_color§;
+}
+#calendar_current-date{
+    color: §calendar_current-date_color§;
+}
+.calendar_input-form{
+    display: table;
+    width: 100%;
+    margin-right: 32%;
+}
+.calendar_input-field{
+    background-color: §calendar_input-field_background-color§;
+    border-color: §calendar_input-field_border-color§;
+    color: §calendar_input-field_color§;
+    width: 36em;
+    font-size: 96%;
+    text-align: left;
+}
+.calendar_input-submit{
+    background-color: §calendar_input-submit_background-color§;
+    border-color: §calendar_input-submit_border-color§;
+    color: §calendar_input-submit_color§;
+    font-size: 100%;
+    margin: 2% 10% 2% 12%;
+}
+.calendar_input-label{
+    text-align: right;
+}
+.calendar_input-row{
+    display: table-row;
+    margin: 4px;
+}
+.calendar_input-row-submit{
+    text-align: right;
+}
+.calendar_input-cell{
+    display: table-cell;
+    margin: 4px;
+}
+
+/* g21m_dokumente.html */
+.documents_center{
+    text-align: center;
+}
+.documents_list{
+    margin-top: 1%;
+    display: grid;
+    grid-template-columns: 33.1% 33.1% 33.1%;
+    padding: 4px;
+}
+.documents_element{
+    list-style-type: none;
+    display: inline;
+    float: none;
+    background-color: §documents_element_background-color§;
+    cursor: pointer;
+    padding-left: 1.7%;
+    border: 4px solid §documents_element_border§;
+}
+
+/* g21m_dokumente_vorschau */
+.documents-preview_iframe{
+    margin-left: 5%;
+    width: 90%;
+    height: 48em;
+}
+
+/* g21m_lernsets */
+.lernsets_input_field{
+    background-color: §lernsets_input_field_background-color§;
+    border-color: §lernsets_input_field_border-color§;
+    color: §lernsets_input_field_color§;
+    width: 16%;
+    font-size: 96%;
+}
+.lernsets_input_div{
+    margin-left: 8%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+.lernsets_input_submit{
+    display: inline-block;
+    margin: 6px;
+    line-height: 1.42;
+    padding: 0.2em 0.4em;
+    font-weight: normal;
+    border-width: 2px;
+    border-style: solid;
+    background: transparent;
+    border-radius: 1.46em;
+    cursor: pointer;
+    vertical-align: bottom;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s, color 0.2s;
+    color: §lernsets_input_submit_1§;
+    border-color: §lernsets_input_submit_1§;
+    font-size: 128%;
+}
+.lernsets_input_submit:hover {
+    color: §lernsets_input_submit_2§;
+    background-color: §lernsets_input_submit_1§;
+}
+.lernsets_input_submit:active {
+    background-color: §lernsets_input_submit_3§;
+}
+.lernsets_input_submit:active::after {
+    background-color: §lernsets_input_submit_3§;
+}
+.lernsets_input_submit::after {
+    background-color: §lernsets_input_submit_1§;
+}
+.lernsets_input_box{
+    background-color: #242424;
+    border-color: #000000;
+    color: #ffffff;
+    transform: scale(1.6);
+    margin-right: 0.27%;
+    margin-bottom: 2%;
+}
+.lernsets_normal{
+    margin-top: 2%;
+}
+.lernsets_input_label{
+    margin-top: 1%;
+}
+.lernsets_input_line{
+    margin-top: 0.4%;
+    margin-left: 0.4%;
+    border: 4px solid #000000;
+    background-color: #1b1e28;
+}
+
+/* g21m_lernen */
+.learn_error_message{
+    text-align: center;
+    color: #ff0000;
+}
+.learn_input_field{
+    background-color: §lernsets_input_field_background-color§;
+    border-color: §lernsets_input_field_border-color§;
+    color: §lernsets_input_field_color§;
+    font-size: 96%;
+}
+.learn_input_submit{
+    display: inline-block;
+    margin: 6px;
+    line-height: 1.42;
+    padding: 0.2em 0.4em;
+    font-weight: normal;
+    border-width: 2px;
+    border-style: solid;
+    background: transparent;
+    border-radius: 1.46em;
+    cursor: pointer;
+    vertical-align: bottom;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s, color 0.2s;
+    color: §lernsets_input_submit_1§;
+    border-color: §lernsets_input_submit_1§;
+    font-size: 128%;
+}
+.learn_input_submit:hover {
+    color: §lernsets_input_submit_2§;
+    background-color: §lernsets_input_submit_1§;
+}
+.learn_input_submit:active {
+    background-color: §lernsets_input_submit_3§;
+}
+.learn_input_submit:active::after {
+    background-color: §lernsets_input_submit_3§;
+}
+.learn_input_submit::after {
+    background-color: §lernsets_input_submit_1§;
+}
+.learn_correct_button {
+    text-decoration: none;
+    display: inline-block;
+    margin: 6px;
+    line-height: 1.42;
+    padding: 0.4em 0.8em;
+    font-weight: normal;
+    border-width: 2px;
+    border-style: solid;
+    background: transparent;
+    border-radius: 1.46em;
+    cursor: pointer;
+    vertical-align: bottom;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s, color 0.2s;
+    color: §learn_correct_button_1§;
+    border-color: §learn_correct_button_1§;
+    font-size: 1em;
+}
+.learn_correct_button:hover {
+    color: §learn_correct_button_2§;
+    background-color: §learn_correct_button_1§;
+}
+.learn_correct_button:active {
+    background-color: §learn_correct_button_3§;
+}
+.learn_correct_button:active::after {
+    background-color: §learn_correct_button_3§;
+}
+.learn_correct_button::after {
+    background-color: §learn_correct_button_1§;
+}
+.learn_wrong_button {
+    text-decoration: none;
+    display: inline-block;
+    margin: 6px;
+    line-height: 1.42;
+    padding: 0.4em 0.8em;
+    font-weight: normal;
+    border-width: 2px;
+    border-style: solid;
+    background: transparent;
+    border-radius: 1.46em;
+    cursor: pointer;
+    vertical-align: bottom;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s, color 0.2s;
+    color: §learn_wrong_button_1§;
+    border-color: §learn_wrong_button_1§;
+    font-size: 1em;
+}
+.learn_wrong_button:hover {
+    color: §learn_wrong_button_2§;
+    background-color: §learn_wrong_button_1§;
+}
+.learn_wrong_button:active {
+    background-color: §learn_wrong_button_3§;
+}
+.learn_wrong_button:active::after {
+    background-color: §learn_wrong_button_3§;
+}
+.learn_wrong_button::after {
+    background-color: §learn_wrong_button_1§;
+}
+#learn_div_exercise #learn_div_result #learn_div_loading{
+    text-align: center;
+}
+
+/* zitateliste */
+.zitateliste_search-input{
+    background-color: §zitateliste_search-input_background-color§;
+    border-color: §zitateliste_search-input_border-color§;
+    color: §zitateliste_search-input_color§;
+    width: 8em;
+    font-size: 96%;
+    text-align: left;
+}
+.zitateliste_main-element{
+    border-color: §zitateliste_main-element_border-color§;
+    border-style: solid;
+    border-width: 1px 0;
+    padding: 0.5em;
+    margin: 0;
+    width: fit-content;
+}
+.zitateliste_main-element-text{
+    margin: 0;
+}
+
+/* control panel*/
+.controlpanel-action_table-element{
+    border: 1px solid §controlpanel-action_table-element_border§;
+}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block b_title %}Aktivität - G21m{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}g21m_nbe-2-0{% endblock %}
+{% block b_onload %}{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    <!--
+    <div class="activity_links">
+        <p class="activity_large-link"><a href="/g21m/kalender">Kalender</a></p>
+        <p class="activity_large-link"><a href="/g21m/dokumente">Dokumente</a></p>
+        <p class="activity_large-link"><a href="/g21m/lernsets">Lernsets</a></p>
+    </div>
+    -->
+    <h2 class="activity_title">Aktivität</h2>
+    <div class="activity_div">
+        {% for element in elements %}
+            <p class="centered">[Vor {{ element[0] }}] {{ element[1] }} <a href="{{ element[2] }}">Ansehen</a></p>
+        {% endfor %}
+    </div>
+{% endblock %}

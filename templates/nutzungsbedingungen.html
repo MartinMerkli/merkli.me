@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block b_title %}Nutzungsbedingungen{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}merkli-me_nbe-0-3{% endblock %}
+{% block b_onload %}{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    <h1>Nutzungsbedingungen</h1>
+    <p><b>Mit der Benutzung dieser Website stimmen Sie diesen Nutzungsbedingungen sowie unseren Datenschutzbestimmungen
+        zu.</b></p>
+    <p>Die Inhalte der Website dürfen nicht an andere Personen weitergegeben werden. Sie dürfen Ihr Konto sowie Ihr
+        Passwort nicht weitergegeben. Ein Konto darf maximal von einer Person
+        genutzt werden. Eine Person darf mehrere Konten besitzen, wenn diese nicht zur Umgehung von Sperren genutzt
+        werden. DDOS- und ähnliche Attacken, welche Schaden anrichten, sind strengstens verboten. Falls Sie
+        Sicherheitsprobleme finden, müssen Sie dies uns zuerst mitteilen und uns Zeit lassen, das oder die Problem(e)
+        zu beheben.</p>
+    <p>Wir behalten uns das Recht vor, Sie ohne Nennen eines Grundes von unseren Diensten auszuschliessen.</p>
+    <h2>Garantie</h2>
+    <p>Obwohl alle Inhalte mit bestem Gewissen erstellt wurden, kann leider nicht ausgeschlossen werden, dass Fehler
+        vorkommen. Wir können Ihnen deshalb nicht garantieren, dass alle Inhalte korrekt und fehlerfrei sind. Wir
+        übernehmen keine Haftung für Schäden, die durch solche Fehler entstanden sind. Bitte informieren Sie uns über
+        solche Fehler, wenn Sie diese finden.</p>
+    <p>Die Note, welche bei den Lernsets angegeben wird, ist nur eine grobe Schätzung. Dies wird durch das
+        Tilde-Zeichen ~ angegeben. Diese Schätzung wird von der eigentlichen Note abweichen. Die normale Formel für
+        schweizer Noten wird verwendet.</p>
+    <h2>Änderungen</h2>
+    <p>Wir behalten uns das Recht vor, diese Nutzungsbedingungen jederzeit zu ändern. Wir werden Sie, falls Sie
+        Benachrichtigungen via E-Mail zulassen, über zukünftige Änderungen informieren.</p>
+{% endblock %}

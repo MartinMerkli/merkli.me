@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block b_title %}Lernsets - G21m{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}g21m_nbe-2-3{% endblock %}
+{% block b_onload %}{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    {% if is_signed_in %}
+        <p>
+            <a href="/g21m/lernsets/neu">Neues Lernset erstellen</a> &ensp;
+            <a href="/g21m/lernsets/aktualisieren">Lernset bearbeiten</a>
+        </p>
+    {% else %}
+        <p>Sie müssen angemeldet sein, um neue Lernsets erstellen zu können.</p>
+    {% endif %}
+    <div class="lernsets_normal centered">
+        <form class="lernsets_input_div" action="/g21m/lernsets/start" method="post">
+            {% for set in sets %}
+                <div class="lernsets_input_line">
+                    <input type="checkbox" name="{{set[0]}}" value="{{set[0]}}" id="{{set[0]}}" {% if set[1] %}checked{% endif %} class="input_box">
+                    <label class="lernsets_input_label" for="{{set[0]}}">[{{ set[3] }}] {{set[2]}} <i>von</i> <b>{{ set[4] }}</b> <i>am</i> {{ set[5] }} &ensp; <small><i>#{{ set[0] }}</i></small></label><br>
+                </div>
+            {% endfor %}
+            <input type="submit" name="submit" value="Lernen" class="lernsets_input_submit">
+        </form>
+    </div>
+    <br>
+    <a href="/melden/lernset/"><small>unangebrachte Inhalte melden</small></a>
+    <div class="lernsets_latest centered">
+        {% if show_last_learned %}
+            <h2>Letzte Übungen</h2>
+            {% for element in learned_elements %}
+                <p>
+                    <span>{{element[0]}}</span> | Fortschritt:
+                    <span>{{element[1]}}</span> | Note:
+                    <span>{{element[2]}}</span> |
+                    <a href="{{element[3]}}">Lernen</a>
+                </p>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

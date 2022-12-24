@@ -1,0 +1,7 @@
+/recycle_bin/
+*.db
+/backups/
+*.backup
+/gunicorn.conf.py
+/venv/
+/resources/key.bin

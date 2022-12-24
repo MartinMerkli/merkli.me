@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block b_title %}{% endblock %} [merkli.me]</title>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="{% block b_stylesheet %}{% endblock %}">
+    <script src="/static/navbar.js"></script>
+</head>
+<body onload="navbar_show_pages('{% block b_navbar %}{% endblock %}');{% block b_onload %}{% endblock %}">
+<div class="navbar">
+    <div class="navbar-top">
+        <ul class="navbar-top-list">
+            <li class="navbar-top-element" onclick="navbar_show_pages('merkli-me')" id="nbt_merkli-me">merkli.me</li>
+            <li class="navbar-top-element" onclick="navbar_show_pages('konto')" id="nbt_konto">Konto</li>
+            <li class="navbar-top-element" onclick="navbar_show_pages('g21m')" id="nbt_g21m">G21m</li>
+            <li class="navbar-top-element" onclick="navbar_show_pages('zitateliste')" id="nbt_zitateliste">Zitateliste</li>
+        </ul>
+        <div class="navbar-line"></div>
+    </div>
+    <div class="navbar-bottom" id="nbb_merkli-me" style="display: none">
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-0-0"><a class="navbar-link" href="/">Startseite</a></li>
+            <li class="navbar-bottom-element" id="nbe-0-1"><a class="navbar-link" href="/impressum">Impressum</a></li>
+            <li class="navbar-bottom-element" id="nbe-0-2"><a class="navbar-link" href="/datenschutz">Datenschutz & Cookies</a></li>
+            <li class="navbar-bottom-element" id="nbe-0-3"><a class="navbar-link" href="/nutzungsbedingungen">Nutzungsbedingungen</a></li>
+        </ul>
+    </div>
+    <div class="navbar-bottom" id="nbb_konto" style="display: none">
+        {% block b_account %}{% endblock %}
+    </div>
+    <div class="navbar-bottom" id="nbb_g21m" style="display: none">
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-2-0"><a class="navbar-link" href="/g21m/aktivität">Aktivität</a></li>
+            <li class="navbar-bottom-element" id="nbe-2-1"><a class="navbar-link" href="/g21m/kalender">Kalender</a></li>
+            <li class="navbar-bottom-element" id="nbe-2-2"><a class="navbar-link" href="/g21m/dokumente">Dokumente</a></li>
+            <li class="navbar-bottom-element" id="nbe-2-3"><a class="navbar-link" href="/g21m/lernsets">Lernsets</a></li>
+            <li class="navbar-bottom-element" id="nbe-2-4"><a class="navbar-link" href="/g21m/menüplan">Menüplan</a></li>
+        </ul>
+    </div>
+    <div class="navbar-bottom" id="nbb_zitateliste" style="display: none">
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-3-0"><a class="navbar-link" href="/zitateliste/zitate">Zitate</a></li>
+            <li class="navbar-bottom-element" id="nbe-3-1"><a class="navbar-link" href="/zitateliste/aktionen">Aktionen</a></li>
+            <li class="navbar-bottom-element" id="nbe-3-2"><a class="navbar-link" href="/zitateliste/manmunkelt">Man Munkelt</a></li>
+            <li class="navbar-bottom-element" id="nbe-3-3"><a class="navbar-link" href="/zitateliste/zitlvo.pdf">die ZitLVo</a></li>
+        </ul>
+    </div>
+</div>
+<div class="navbar-account">
+    <p>{% block b_account_name %}{% endblock %}</p>
+</div>
+<div class="main">
+    {% block b_content %}{% endblock %}
+</div>
+<div class="legal">
+    <ul class="legal-list">
+        <li class="legal-element"><a class="legal-link" href="/impressum">Impressum</a></li>
+        <li class="legal-element"><a class="legal-link" href="/datenschutz">Datenschutz & Cookies</a></li>
+        <li class="legal-element"><a class="legal-link" href="/nutzungsbedingungen">Nutzungsbedingungen</a></li>
+    </ul>
+</div>
+</body>
+</html>

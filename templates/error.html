@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block b_title %}{{ page_title }}{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}{% endblock %}
+{% block b_onload %}{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    <div class="error_main">
+        <h2>{{ title }}</h2>
+        <p>{{ message }}</p>
+        <a href="{{ link }}">Zurück</a>
+    </div>
+{% endblock %}

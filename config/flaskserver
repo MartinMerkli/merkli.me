@@ -1,0 +1,37 @@
+server{
+    server_name merkli.me;
+
+    allow all;
+    
+    location / {
+        proxy_pass http://localhost:8000;
+        proxy_redirect off;
+
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    error_page 502 /502.html;
+    location = /502.html {
+        root  /var/www/html;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/merkli.me/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/merkli.me/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server{
+    if ($host = merkli.me) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    listen 80;
+    server_name merkli.me;
+    return 404; # managed by Certbot
+
+}

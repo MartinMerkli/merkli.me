@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block b_title %}Kalender - G21m{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}g21m_nbe-2-1{% endblock %}
+{% block b_onload %}calendar_reload();{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    <script type="text/javascript" defer>
+        let calendar_data = {{ calendar_data | safe }};
+        let calendar_current_date = [{{ year }}, {{ month }}, {{ day }}];
+    </script>
+    <script src="/static/g21m_calendar.js" defer></script>
+    <h2 class="activity_title">
+        <a href="#" id="calendar_p_month" onclick="calendar_previous_month()">&lt;&lt;&lt;</a>
+        <span id="calendar_month_name">MONTH</span>
+        <span id="calendar_year_number">YEAR</span>
+        <a href="#" id="calendar_n_month" onclick="calendar_next_month()">&gt;&gt;&gt;</a>
+    </h2>
+    <div class="calendar_weekdays">
+        <span class="calendar_weekday">Montag</span>
+        <span class="calendar_weekday">Dienstag</span>
+        <span class="calendar_weekday">Mittwoch</span>
+        <span class="calendar_weekday">Donnerstag</span>
+        <span class="calendar_weekday">Freitag</span>
+        <span class="calendar_weekday">Samstag</span>
+        <span class="calendar_weekday">Sonntag</span>
+    </div>
+    <div class="calendar_calendar">
+        {% for iterator in range(42) %}
+            <div class="calendar_day" id="calendar_day-{{ iterator }}">
+                <span class="calendar_day-date" id="calendar_day-date-{{ iterator }}"></span>
+                <ul class="calendar_day-list" id="calendar_day-list-{{ iterator }}"></ul>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="calendar_technical">
+        <div id="calendar_selected"></div>
+        <div id="calendar_not-selected"></div>
+        <div id="calendar_current-date"></div>
+    </div>
+    {% if admin %}
+        <div>
+            <h3 class="activity_title">Event hinzufügen</h3>
+            <form action="/g21m/kalender/neu" method="post" class="calendar_input-form">
+                <p class="calendar_input-row">
+                    <label for="calendar_input-name" class="calendar_input-cell calendar_input-label">Name: </label>
+                    <input type="text" id="calendar_input-name" class="calendar_input-field calendar_input-cell" name="name" required>
+                </p><p class="calendar_input-row">
+                    <label for="calendar_input-start" class="calendar_input-cell calendar_input-label">Beginn: </label>
+                    <input type="text" id="calendar_input-start" class="calendar_input-field calendar_input-cell" name="start" required>
+                </p><p class="calendar_input-row">
+                    <label for="calendar_input-end" class="calendar_input-cell calendar_input-label">Ende: </label>
+                    <input type="text" id="calendar_input-end" class="calendar_input-field calendar_input-cell" name="end" required>
+                </p><p class="calendar_input-row">
+                    <label for="calendar_input-type" class="calendar_input-cell calendar_input-label">Typ: </label>
+                    <input type="number" id="calendar_input-type" class="calendar_input-field calendar_input-cell" name="type" required>
+                </p><p class="calendar_input-row calendar_input-row-submit">
+                    <input type="submit" class="calendar_input-submit calendar_input-cell" name="Hinzufügen" value="Hinzufügen">
+                </p>
+            </form>
+        </div>
+    {% endif %}
+{% endblock %}

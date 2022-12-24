@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block b_title %}Datenschutz{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}merkli-me_nbe-0-2{% endblock %}
+{% block b_onload %}{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    <h1>Datenschutz</h1>
+    <h2>Verantwortliche Person</h2>
+    <p>{{ imprint_name }}</p>
+    <p>{{ imprint_address }}</p>
+    <p>{{ imprint_city }}</p>
+    <p><a href="mailto:{{ imprint_mail | safe }}">{{ imprint_mail }}</a></p>
+    <h2>Ihre Rechte</h2>
+    <p>Sie haben das Recht, jederzeit unentgeltlich Auskunft über die Bearbeitung Ihrer personenbezogenen Daten zu
+        verlangen. Wenden Sie sich dazu an die für den Datenschutz verantwortliche Person. Weitere Rechte wie das
+        Recht auf Datenlöschung, Datenberichtigung, Einschränkung der Datenverarbeitung und das Recht auf
+        Datenübertragung sind im gesetzlich vorgeschriebenen Rahmen vorhanden.</p>
+    <p>Die Erfassung der Daten zur Bereitstellung der Website und die Speicherung von Daten in Logfiles ist für den
+        Betrieb unserer Website zwingend erforderlich. Es besteht deshalb diesbezüglich seitens der Nutzer*innen
+        unserer Website kein Widerspruchsrecht.</p>
+    <h2>Verschlüsselung</h2>
+    <p>Aus Sicherheitsgründen und zum Schutz der Übertragung personenbezogener Daten und anderer vertraulicher Inhalte
+        setzen wir auf unserer Website eine SSL- beziehungsweise eine TLS-Verschlüsselung ein. Dies können Sie in
+        Ihrem Webbrowser an der Zeichenfolge "https://" und dem Schloss-Symbol erkennen.</p>
+    <h2>Logfiles</h2>
+    <p>Wenn Sie unsere Website besuchen, verarbeiten wir die nachfolgenden (personenbezogenen) Daten, die Ihr Browser
+        an unseren Server übermittelt (sogenannte Logfiles):</p>
+    <ol>
+        <li>Ein Hash (sha256) Ihrer IP-Adresse</li>
+        <li>Datum und Uhrzeit der Anfrage</li>
+        <li>angefragte Daten (welche Adresse aufgerufen wurde)</li>
+        <li>User-Agent (enthält normalerweise Informationen wie Name und Version zum verwendeten Browser und
+            Betriebssystem)</li>
+        <li>Ob Sie zurzeit angemeldet sind (Ihr Konto kann damit nicht zurückverfolgt werden)</li>
+    </ol>
+    <p>Diese Daten werden nur verwendet, um 1. die missbräuchliche Nutzung unserer Dienste zu verhindern, und 2.
+        unsere Dienste zu verbessern. Es werden keine Daten an Dritte weitergeleitet.</p>
+    <p>Damit unsere Dienste schneller erreichbar sind und Angreifer blockiert werden, kann es vorkommen, dass wir Ihre
+        IP-Adresse auf eine White- bzw. Black-list setzen. Es kann dabei nicht zurückverfolgt werden, wem die
+        IP-Adresse gehört.</p>
+    <h2>Cookies</h2>
+    <p>Wir verwenden Cookies, um Sie zu identifizieren, falls Sie sich angemeldet haben. Ausserdem können wir Cookies
+        verwenden, um (potenzielle) Angreifer zu blockieren und unsere Dienste schneller verfügbar zu machen.</p>
+    <p>Sie können gegen den Einsatz von Cookies nicht widersprechen, da ausschliesslich essenzielle Cookies zum Einsatz
+        kommen.</p>
+    <p>Alle Cookies werden normalerweise spätestens nach 24 Tagen von ihrem Gerät gelöscht.</p>
+    <h2>Kontaktaufnahme</h2>
+    <p>Falls Sie uns kontaktieren sollten, verwenden wir die von Ihnen zur Verfügung gestellten Daten, um Ihre Frage(n)
+        zu beantworten. Ohne diese Daten könnten wir Ihre Frage(n) nicht beantworten. Ihr Name oder Ihre E-Mail-Adresse
+        werden gespeichert, um massenhafte Nachrichten ohne seriösen Inhalt auszublenden.</p>
+    <p>Ein Drittanbieter erbringt für uns die Dienste zum Bereitstellen und zur Verwaltung unserer E-Mail-Postfächer.
+        Alle Daten, die im Rahmen der Kommunikation über unsere E-Mail-Postfächer verarbeitet werden, werden auf den
+        Servern des Drittanbieters verarbeitet.</p>
+    <h2>Speicherung von personenbezogenen Daten (Konto)</h2>
+    <p>Dieser Abschnitt betrifft Sie nur, falls Sie ein Konto auf unserer Website verwenden.</p>
+    <p>Wir speichern folgende personenbezogenen Daten von Ihnen:</p>
+    <ol>
+        <li>Ihr Name</li>
+        <li>E-Mail Adresse</li>
+        <li>Passwort-Hash mit dazugehörigen Salt*</li>
+        <li>Persönliche Einstellungen</li>
+        <li>Datum und Uhrzeit des Erstellens des Kontos</li>
+    </ol>
+    <small>*Damit wir Ihr Passwort nicht kennen und Angreifer auf unserer Infrastruktur Ihr Passwort nicht lesen
+        können, wird Ihr Passwort mit einer Einweg-Verschlüsselung (auch bekannt als Hash) sicher verschlüsselt. Wir
+        verwenden für diesen Prozess die Funktionen 'sha3_512', 'pbkdf2_hmac' und 'urlsafe_b64encode'. Dem Passwort
+        wird ein sogenannter Salt hinzugefügt, damit der Hash noch sicherer ist.
+        <a href="/konto/hash">Funktionsweise ausprobieren</a></small>
+    <p>Diese Daten sind notwendig, um unsere Dienste bereitzustellen. Es werden keine Daten an Dritte weitergegeben,
+        ausser Sie veröffentlichen Dokumente, Lernsets oder Kommentare, oder Sie machen Änderungen an der Zitateliste,
+        bei denen andere Nutzer*innen Ihren Namen, das Datum und die Uhrzeit sehen können.</p>
+    <h2>Speicherung von personenbezogenen Daten (G21m)</h2>
+    <p>Dieser Abschnitt betrifft Sie nur, falls Sie die G21m-Sektion unserer Website verwenden.</p>
+    <p>Wir speichern folgende personenbezogenen Daten von Ihnen:</p>
+    <ol>
+        <li>Ihr Name</li>
+        <li>Kontonummer</li>
+        <li>Statistiken zu den Lernsets</li>
+    </ol>
+    <p>Diese Daten sind notwendig, um unsere Dienste bereitzustellen. Es werden keine Daten an Dritte weitergegeben,
+        ausser Sie veröffentlichen Dokumente, Lernsets oder Kommentare, bei denen andere Nutzer*innen Ihren Namen, das
+        Datum und die Uhrzeit sehen können.</p>
+    <h2>Speicherung von personenbezogenen Daten (Zitateliste)</h2>
+    <p>Dieser Abschnitt betrifft Sie nur, falls Sie die Zitateliste-Sektion unserer Website verwenden.</p>
+    <p>Wir speichern folgende personenbezogenen Daten von Ihnen:</p>
+    <ol>
+        <li>Ihr Name</li>
+        <li>Kontonummer</li>
+        <li>Letzte Zugriffszeit</li>
+    </ol>
+    <p>Diese Daten sind notwendig, um unsere Dienste bereitzustellen. Es werden keine Daten an Dritte weitergegeben,
+        ausser Sie machen Änderungen an der Zitateliste, bei denen andere Nutzer*innen Ihren Namen, das Datum und die
+        Uhrzeit sehen können.</p>
+    <h2>Änderungen</h2>
+    <p>Wir behalten uns das Recht vor, diese Datenschutzbestimmungen jederzeit zu ändern. Wir werden Sie, falls Sie
+        Benachrichtigungen via E-Mail zulassen, über zukünftige Änderungen informieren.</p>
+{% endblock %}

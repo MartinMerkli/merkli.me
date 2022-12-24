@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block b_title %}Willkommen{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}merkli-me_nbe-0-0{% endblock %}
+{% block b_onload %}{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    <div class="index-icons">
+        <div class="index-icon index-icon_g21m" onclick="window.location.href = '/g21m/aktivität'">
+            <a href="/g21m/aktivität">G21m</a>
+        </div>
+        <div class="index-icon index-icon_zitateliste" onclick="window.location.href = '/zitateliste/zitate'">
+            <a href="/zitateliste/zitate">Zitateliste</a>
+        </div>
+    </div>
+{% endblock %}

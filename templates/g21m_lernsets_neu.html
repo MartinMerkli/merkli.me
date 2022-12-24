@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block b_title %}Lernset hochladen{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}g21m{% endblock %}
+{% block b_onload %}{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    <h2 class="activity_title">Lernset hochladen</h2>
+    <a href="/g21m/lernsets/anleitung">Anleitung zur Erstellung einer Datei für ein Lernset</a>
+    <form action="/g21m/lernsets/neu/post" method="post" class="calendar_input-form" enctype="multipart/form-data">
+        <p class="calendar_input-row">
+            <label for="dokumente-neu_input-name" class="calendar_input-cell calendar_input-label">Name: </label>
+            <input type="text" id="dokumente-neu_input-name" class="calendar_input-field calendar_input-cell" name="name" required minlength="2" maxlength="32">
+        </p><p class="calendar_input-row">
+            <label for="dokumente-neu_input-file" class="calendar_input-cell calendar_input-label">Datei: </label>
+            <input type="file" id="dokumente-neu_input-file" class="calendar_input-field calendar_input-cell" name="file" required>
+        </p><p class="calendar_input-row">
+            <label for="dokumente-neu_input-end" class="calendar_input-cell calendar_input-label">Fach: </label>
+            <select id="dokumente-neu_input-end" class="calendar_input-field calendar_input-cell" name="subject" required>
+                <option value="-" selected>Kein</option>
+                <option value="-">Anderes</option>
+                <option value="BG">Bildnerisches Gestalten</option>
+                <option value="BI">Biologie</option>
+                <option value="BL">Begleitetes Lernen</option>
+                <option value="CH">Chemie</option>
+                <option value="DE">Deutsch</option>
+                <option value="EN">Englisch</option>
+                <option value="FR">Französisch</option>
+                <option value="GG">Geografie</option>
+                <option value="GS">Geschichte</option>
+                <option value="HW">Hauswirtschaft</option>
+                <option value="IN">Informatik</option>
+                <option value="KS">Klassenstunde</option>
+                <option value="MA">Mathematik</option>
+                <option value="MU">Musik</option>
+                <option value="NT">Natur & Technik</option>
+                <option value="PB">Politische Bildung</option>
+                <option value="PH">Philosophie</option>
+                <option value="PS">Physik</option>
+                <option value="RE">Religionskunde & Ethik</option>
+                <option value="SP">Sport</option>
+                <option value="SD">Sport(SD)</option>
+                <option value="SH">Sport(SH)</option>
+                <option value="TG">Technisches Gestalten</option>
+                <option value="WR">Wirtschaft & Recht</option>
+                <option value="SAM">Schwerpunktfach Anwendungen der Mathematik</option>
+                <option value="SPS">Schwerpunktfach Physik</option>
+                <option value="SBI">Schwerpunktfach Biologie</option>
+                <option value="SCH">Schwerpunktfach Chemie</option>
+                <option value="SBG">Schwerpunktfach Bildnerisches Gestalten</option>
+                <option value="SES">Schwerpunktfach Spanisch</option>
+                <option value="SIT">Schwerpunktfach Italienisch</option>
+                <option value="SMU">Schwerpunktfach Musik</option>
+                <option value="SWR">Schwerpunktfach Wirtschaft & Recht</option>
+                <option value="EAM">Ergänzungsfach Anwendungen der Mathematik</option>
+                <option value="EBG">Ergänzungsfach Bildnerisches Gestalten</option>
+                <option value="EBI">Ergänzungsfach Biologie</option>
+                <option value="ECH">Ergänzungsfach Chemie</option>
+                <option value="EGG">Ergänzungsfach Geografie</option>
+                <option value="EGS">Ergänzungsfach Geschichte</option>
+                <option value="EIN">Ergänzungsfach Informatik</option>
+                <option value="EMU">Ergänzungsfach Musik</option>
+                <option value="EPH">Ergänzungsfach Philosophie</option>
+                <option value="EPP">Ergänzungsfach Pädagogik und Psychologie</option>
+                <option value="EPS">Ergänzungsfach Physik</option>
+                <option value="ERE">Ergänzungsfach Religionskunde & Ethik</option>
+                <option value="ESP">Ergänzungsfach Sport</option>
+                <option value="EWR">Ergänzungsfach Wirtschaft & Recht</option>
+                <option value="F">Freifach</option>
+            </select>
+        </p><p class="calendar_input-row calendar_input-row-submit">
+            <input type="submit" class="calendar_input-submit calendar_input-cell" name="Hochladen" value="Hochladen">
+        </p>
+    </form>
+{% endblock %}

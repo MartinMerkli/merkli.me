@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block b_title %}Aktionen - Zitateliste{% endblock %}
+{% block b_stylesheet %}{{ stylesheet }}{% endblock %}
+{% block b_navbar %}zitateliste_nbe-3-1{% endblock %}
+{% block b_onload %}zitateliste_aktionen_sort('id', true);zitateliste_aktionen_reload();{% endblock %}
+{% block b_account_name %}{{ account | safe }}{% endblock %}
+{% block b_account %}
+    {% if is_signed_in %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-0"><a class="navbar-link" href="/konto/abmelden">Abmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-1"><a class="navbar-link" href="/konto/einstellungen">Einstellungen</a></li>
+        </ul>
+    {% else %}
+        <ul class="navbar-bottom-list">
+            <li class="navbar-bottom-element" id="nbe-1-2"><a class="navbar-link" href="/konto/anmelden">Anmelden</a></li>
+            <li class="navbar-bottom-element" id="nbe-1-3"><a class="navbar-link" href="/konto/registrieren">Registrieren</a></li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block b_content %}
+    <script type="text/javascript" src="/static/zitateliste_aktionen.js"></script>
+    <script>
+        let zitateliste_aktionen_data = {{ data | safe}};
+        let zitateliste_aktionen_last = "{{ last | safe}}";
+    </script>
+    <h1 class="centered">Aktionen - Zitateliste</h1>
+    <p class="centered"><b>
+        <a href="/zitateliste/aktionen/neu">Aktion hinzufügen</a> &ensp;
+        <a href="/zitateliste/aktionen/aktionen.json">Rohdaten herunterladen</a>
+    </b></p>
+    <h3> &ensp; &ensp; Sortieren</h3>
+    <div>
+        <a href="#" onclick="zitateliste_aktionen_sort('id', true)">ID <small><i>[höchste zuerst]</i></small></a> &ensp;
+        <a href="#" onclick="zitateliste_aktionen_sort('id', false)">ID <small><i>[kleinste zuerst]</i></small></a> &ensp;
+        <a href="#" onclick="zitateliste_aktionen_sort('time', true)">Datum <small><i>[neuste zuerst]</i></small></a> &ensp;
+        <a href="#" onclick="zitateliste_aktionen_sort('time', false)">Datum <small><i>[älteste zuerst]</i></small></a> &ensp;
+        <a href="#" onclick="zitateliste_aktionen_sort('edited', true)">Zuletzt bearbeitet</a> &ensp;
+        <a href="#" onclick="zitateliste_aktionen_sort('edited', false)">Zuletzt bearbeitet <small><i>[invertiert]</i></small></a> &ensp;
+    </div>
+    <h3> &ensp; &ensp; Filter</h3>
+    <div>
+        <label><input type="text" class="zitateliste_search-input" onchange="zitateliste_aktionen_reload()" onkeyup="zitateliste_aktionen_reload()" placeholder="Inhalt" id="zitateliste-aktionen_search-input_text"></label>
+        <label><input type="text" class="zitateliste_search-input" onchange="zitateliste_aktionen_reload()" onkeyup="zitateliste_aktionen_reload()" placeholder="bearbeitet von" id="zitateliste-aktionen_search-input_changed"></label>
+        <label><input type="text" class="zitateliste_search-input" onchange="zitateliste_aktionen_reload()" onkeyup="zitateliste_aktionen_reload()" placeholder="Thema" id="zitateliste-aktionen_search-input_tags"></label>
+        <label><input type="text" class="zitateliste_search-input" onchange="zitateliste_aktionen_reload()" onkeyup="zitateliste_aktionen_reload()" placeholder="später als" id="zitateliste-aktionen_search-input_time-start"></label>
+        <label><input type="text" class="zitateliste_search-input" onchange="zitateliste_aktionen_reload()" onkeyup="zitateliste_aktionen_reload()" placeholder="früher als" id="zitateliste-aktionen_search-input_time-end"></label>
+    </div>
+    <p> &ensp; &ensp;  Farben: &ensp; <span style="color: #FFADAD">Neu</span> &ensp; <span style="color: #FDFFB6">Problem</span> &ensp; <span style="color: #9BF6FF">Geschützt</span> &ensp; <span style="color: #BDB2FF">Zensiert</span> &ensp; </p>
+    <div>
+        <ol class="zitateliste_main" id="zitateliste_aktionen_main"></ol>
+    </div>
+{% endblock %}
