@@ -5,3 +5,6 @@
 /gunicorn.conf.py
 /venv/
 /resources/key.bin
+/resources/ZitLVo.pdf
+/.idea/
+/__pycache__/
