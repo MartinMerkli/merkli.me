@@ -1,0 +1,131 @@
+                 MERKLI.ME SOURCE CODE LICENSE                 |
+                  Version 1, 26 December 2022
+
+  Copyright (C) 2022-2023 Martin Merkli
+
+
+                           Preamble
+
+  This license aims to allow everyone to understand the inner
+workings of the website usually reachable under the URL
+https://merkli.me/ . The users should be able to verify that
+the privacy policy, as written on the website, is implemented
+in this way.
+
+  This is not an open source license as defined by the Open
+Source Initiative, it does not fulfill the requirements of the
+open source definition <https://opensource.org/osd>, and it
+does not aim to fulfill them.
+
+
+                     TERMS AND CONDITIONS
+
+    0. Definitions
+
+  "This license" refers to the latest version of the merkli.me
+Source Code License.
+
+  "The source code" is everything of this work in the preferred
+form to making modifications to it.
+
+  To "modify" something means to copy part or everything from
+it other than making an exact copy of it in a way requiring
+copyright permissions. The result of this process is called
+a "modified work" and is based on the original.
+
+  "The website" refers to the website which this source code
+belongs to. It usually can be reached under the URL
+<https://merkli.me/> .
+
+  "The creator" or "the author" refer to the copyright holder.
+
+  "This project" refers the source code as well as the website.
+
+
+    1. Goals
+
+  As stated in the preamble, the goal of this license is to
+make the source code of the website available to the public. It
+aims to allow everyone to verify that the privacy policy, as
+written on the website, is implemented in the way stated in the
+privacy policy.
+
+  Everyone shall be able to contribute to the project.
+
+  This license shall protect the intellectual property of the
+copyright holder in order to value the work and effort that has
+gone into this project.
+
+
+    2. Scope
+
+  This license applies to all source code files unless
+otherwise noted in the file itself.
+
+  If you have a written agreement with the copyright holder,
+only the terms and conditions of this license which are not
+specified in the agreement are applicable.
+
+
+    3. Basic Permissions
+
+  You are allow to make exact copies of the source code for
+yourself.
+
+  You are allowed to view the source code.
+
+  You are allowed to modify any of your copies of the source code
+only and solely in order to contribute to this project. Only
+
+  You are allowed to execute the code in a network which is not
+accessible by the public in order to test modifications and to
+verify that the provided source code is indeed the software
+used on the server of the website.
+
+
+    4. Bugs
+
+  If you find any bugs or other forms of mistakes in this
+project you are obligated to report them.
+
+  If you find a security related issue you may not inform
+someone else about it before it is fixed both in the source
+code and on the website.
+
+
+    5. Enforcement
+
+  The failure to enforce or exercise any part of this license
+is not a waiver of that section.
+
+  The copyright holder may allow other people and/or
+organisations to enforce this license.
+
+
+    6. Restrictions
+
+  You may not distribute any copies of this project, modified
+or not, everything or only parts of it.
+
+  You may only use the source code in order to contribute to
+the project and to verify that the privacy policy is
+implemented as it is written on the website. All other usages
+are not permitted.
+
+  All rights which are not granted to you by this license are
+reserved for the copyright holder.
+
+
+    7. Disclaimer
+
+  THE SOURCE CODE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE
+AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOURCE CODE OR THE USE OR OTHER DEALINGS IN
+THE SOURCE CODE.
+
+  Any summary of this license is not a substitute for this
+license and may not be interpreted as a license.

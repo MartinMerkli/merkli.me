@@ -3,6 +3,11 @@
 This is the source code of [merkli.me](https://merkli.me/).
 You can report bugs [here](https://github.com/Emil105105/merkli.me/issues).
 
+## Copyright
+
+Even though you can view and download the source code, this project is not 'open source'.
+
+See LICENSE.txt for more information.
 
 ## Hosting the website locally
 
