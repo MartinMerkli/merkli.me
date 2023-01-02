@@ -51,7 +51,7 @@ Copy `/config/502.html` to `/var/www/html/`.
 
 #### Supervisorctl
 
-All files ending with `.conf` have to copied to `/etc/supervisor/conf.d`. Supervisorctl then has to be restarted with
+All files ending with `.conf` have to be copied to `/etc/supervisor/conf.d`. Supervisorctl then has to be restarted with
 ```
 sudo supervisorctl reread
 sudo supervisorctl update
