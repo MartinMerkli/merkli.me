@@ -472,7 +472,7 @@ def before_request():
     app.permanent_session_lifetime = timedelta(days=24)
     score = scan_request(request)
     if score == 0:
-        return render_template('banned.html', ip=request.access_route[-1]), 403
+        return render_template('_banned.html', ip=request.access_route[-1]), 403
 
 
 ########################################################################################################################
@@ -654,24 +654,24 @@ def site_konto_registrieren2():
         if i not in form:
             return error_422('required fields are empty')
     if len(form['password']) < 8:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='Passwort zu kurz', title='Fehler: Passwort zu kurz',
                                link='/konto/registrieren',
                                message='Ihr Passwort muss mindestens 8 Zeichen lang sein.'), 422
     if form['password'] != form['password_repeat']:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='Passwörter sind unterschiedlich',
                                title='Fehler: Passwörter sind unterschiedlich', link='/konto/registrieren',
                                message='Die Passwörter, welche Sie eingegeben haben, stimmen nicht überein.'), 422
     for i in ['<', '>', '"', '&']:
         if i in form['name']:
-            return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+            return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                    page_title='illegaler Kontoname',
                                    title='illegaler Kontoname', link='/konto/registrieren',
                                    message='Ihr Kontoname enthält Zeichen, die nicht verwendet werden dürfen.'), 422
     result = db_su.execute('select * from accounts where mail=?', (form['mail'],)).fetchone()
     if result is not None:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='Konto existiert', title='Fehler: Konto existiert schon',
                                link='/konto/registrieren',
                                message='Ein Konto mit der E-Mail-Adresse, die Sie eingegeben haben, '
@@ -693,7 +693,7 @@ def site_konto_registrieren2():
         resp = make_response(redirect('/konto/registrieren3'))
         resp.set_cookie('mch', mail_id, timedelta(minutes=15))
         return resp
-    return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+    return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                            page_title='Fehler beim Versenden der E-Mail', title='Fehler beim Versenden der E-Mail',
                            link='/konto/registrieren',
                            message='Es ist ein Fehler beim Versenden der E-Mail aufgetreten.'), 500
@@ -728,7 +728,7 @@ def site_konto_registrieren4():
     if result is None:
         return redirect('/konto/registrieren')
     if result[7] != form['code']:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='falscher Code', title='Fehler: falscher Code',
                                link='/konto/registrieren3',
                                message='Der Code, den Sie eingegeben haben, ist falsch'), 422
@@ -768,12 +768,12 @@ def site_konto_anmelden2():
             return error_422('required fields are empty')
     result = db_su.execute('select id, mail, salt, hash from accounts where mail=?', (form['mail'], )).fetchone()
     if result is None:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='falsche Anmeldedaten', title='falsche Anmeldedaten',
                                link='/konto/anmelden', message='Die E-Mail-Adresse und/oder das Passwort, das Sie '
                                                                'eingegeben haben, ist/sind falsch.'), 422
     if hash_password(form['password'], result[2]) != result[3]:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='falsche Anmeldedaten', title='falsche Anmeldedaten',
                                link='/konto/anmelden', message='Die E-Mail-Adresse und/oder das Passwort, das Sie '
                                                                'eingegeben haben, ist/sind falsch.'), 422
@@ -819,7 +819,7 @@ def site_konto_hash2():
         if i not in form:
             return error_422('required fields are empty')
     if form['password'] != form['password_repeat']:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='Passwörter sind unterschiedlich',
                                title='Fehler: Passwörter sind unterschiedlich', link='/konto/registrieren',
                                message='Die Passwörter, welche Sie eingegeben haben, stimmen nicht überein.'), 422
@@ -884,18 +884,18 @@ def site_konto_einstellungen_passwort():
         if i not in form:
             return error_422('required fields are empty')
     if len(form['password_new']) < 8:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='Passwort zu kurz', title='Fehler: Passwort zu kurz',
                                link='/konto/registrieren',
                                message='Ihr Passwort muss mindestens 8 Zeichen lang sein.'), 422
     if form['password_new'] != form['password_repeat']:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='Passwörter sind unterschiedlich',
                                title='Fehler: Passwörter sind unterschiedlich', link='/konto/registrieren',
                                message='Die Passwörter, welche Sie eingegeben haben, stimmen nicht überein.'), 422
     result = db_su.execute('select id, mail, salt, hash, newsletter from accounts where id=?', (acc,)).fetchone()
     if hash_password(form['password'], result[2]) != result[3]:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='falsches Passwort', title='falsches Passwort',
                                link='/konto/anmelden',
                                message='Die das Passwort, das Sie eingegeben haben, ist falsch.'), 422
@@ -919,7 +919,7 @@ def site_konto_einstellungen_passwort():
                   f"Adresse wird nur zur automatischen Kommunikation genutzt)</small> und ändern Sie die Passwörter " \
                   f"von allen Konten, die Sie besitzen.</p></body></html>"
         send_mail(mail, subject, message_plain, message)
-    return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+    return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                            page_title='Erfolg', title='Erfolg', link='/konto/einstellungen',
                            message='Ihr Passwort wurde erfolgreich geändert.'), 200
 
@@ -955,7 +955,7 @@ def folder_konto_einstellungen_aendern(index, value):
     elif index == 'plattform' and value in ['desktop', 'mobile']:
         resp.set_cookie('platform', value)
         return resp
-    return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+    return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                            page_title='Fehler', title='Fehler', link='/konto/einstellungen',
                            message='Ihre Anfrage konnte nicht verstanden werden.'), 400
 
@@ -1271,7 +1271,7 @@ def site_g21m_lernsets_start():
             account = '<p>Nicht angemeldet</p>'
         else:
             account = f"<p>Angemeldet als<br>{name}</p>"
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='Keine Auswahl', title='Keine Lernsets ausgewählt', link='/g21m/lernsets',
                                message='Sie müssen mindestens ein Lernset auswählen.'), 422
     return redirect('/g21m/lernen/' + sets)
@@ -1999,7 +1999,7 @@ def site_controlpanel_post():
     if result2 is None:
         return error_500('paradox: account exists and does not')
     if hash_password(form['password'], result2[2]) != result2[3]:
-        return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+        return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                                page_title='falsche Anmeldedaten', title='falsche Anmeldedaten',
                                link='/controlpanel', message='Falsches Passwort'), 422
     try:
@@ -2035,7 +2035,7 @@ def error_400(error_message):
     else:
         account = f"<p>Angemeldet als<br>{name}</p>"
     request_errors_log.info(f"400\t{error_message}")
-    return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+    return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                            page_title='', title='', link='/',
                            message=''), 400
 
@@ -2048,7 +2048,7 @@ def error_401(error_message):
     else:
         account = f"<p>Angemeldet als<br>{name}</p>"
     request_errors_log.info(f"401\t{error_message}")
-    return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+    return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                            page_title='Fehlende Berechtigungen', title='Fehlende Berechtigungen', link='/',
                            message='Sie besitzen nicht genügend Berechtigungen, um auf diese Seite zugreifen zu können'
                            ), 401
@@ -2062,7 +2062,7 @@ def error_403(error_message):
     else:
         account = f"<p>Angemeldet als<br>{name}</p>"
     request_errors_log.info(f"403\t{error_message}")
-    return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+    return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                            page_title='Fehlende Berechtigungen', title='Fehlende Berechtigungen', link='/',
                            message='Sie besitzen nicht genügend Berechtigungen, um auf diese Seite zugreifen zu können'
                            ), 403
@@ -2076,7 +2076,7 @@ def error_404(error_message):
     else:
         account = f"<p>Angemeldet als<br>{name}</p>"
     request_errors_log.info(f"404\t{error_message}")
-    return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+    return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                            page_title='Seite nicht gefunden', title='Seite nicht gefunden', link='/',
                            message='Die Seite, welche Sie aufrufen möchten, wurde nicht gefunden. Möglicherweise haben '
                                    'Sie eine falsche Adresse (URL) eingegeben, die Seite existiert nicht mehr oder der '
@@ -2091,7 +2091,7 @@ def error_422(error_message):
     else:
         account = f"<p>Angemeldet als<br>{name}</p>"
     request_errors_log.info(f"422\t{error_message}")
-    return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+    return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                            page_title='Fehlerhafte Anfrage', title='Fehlerhafte Anfrage', link='/',
                            message='Ihre Anfrage enthält mindestens einen Fehler, aufgrund dessen Ihre Anfrage nicht '
                                    'verstanden werden kann. Die häufigste Fehlerquelle ist das Leerlassen von '
@@ -2106,7 +2106,7 @@ def error_500(error_message):
     else:
         account = f"<p>Angemeldet als<br>{name}</p>"
     request_errors_log.info(f"500\t{error_message}")
-    return render_template('error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
+    return render_template('_error.html', stylesheet=stylesheet, account=account, is_signed_in=not (acc is None),
                            page_title='interner Fehler', title='interner Fehler', link='/',
                            message='Ein interner, unbekannter Fehler ist aufgetreten. Bitte kontaktieren Sie den*die '
                                    'Betreiber*in via E-Mail (die Adresse kann im Impressum gefunden werden.) wie '
