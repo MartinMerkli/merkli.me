@@ -1433,19 +1433,13 @@ def site_g21m_menuplan():
         account = f"<p>Angemeldet als<br>{name}</p>"
     with open(join(app.root_path, 'resources/mensa.json'), 'r') as f:
         result = json_load(f)
-    keys = list(result.keys())
-    keys.sort()
-    keys.reverse()
-    keys = keys[:21]
+    weekdays = result['days']
     data = []
-    for r in keys:
-        found = False
-        for i, d in enumerate(data):
-            if d[0] == result[r]['date']:
-                found = True
-                data[i][1].append([result[r]['title'], result[r]['menu']])
-        if not found:
-            data.append([result[r]['date'], [result[r]['title'], result[r]['menu']]])
+    for i, weekday in enumerate(weekdays):
+        day = [weekday, []]
+        for _, (title, text) in enumerate(zip(result['titles'][i], result['texts'][i])):
+            day[1].append([title, text])
+        data.append(day.copy())
     return render_template('g21m_menüplan.html', stylesheet=stylesheet, account=account, is_signed_in=not(acc is None),
                            data=data)
 
