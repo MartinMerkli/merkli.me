@@ -1,10 +1,23 @@
+# old files
 /recycle_bin/
+
+# databases containing private data
 *.db
+
+# backups containing parts of the databases mentioned above
 /backups/
 *.backup
+
+# private login data
 /gunicorn.conf.py
-/venv/
 /resources/key.bin
-/resources/ZitLVo.pdf
+
+# not usable on other computers
+/venv/
 /.idea/
 /__pycache__/
+*.pyc
+
+# private files
+/resources/ZitLVo.pdf
+/static/images/learning/
