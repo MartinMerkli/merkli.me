@@ -1,4 +1,4 @@
-                 MERKLI.ME SOURCE CODE LICENSE                 |
+                 MERKLI.ME SOURCE CODE LICENSE
                   Version 1, 26 December 2022
 
   Copyright (C) 2022-2023 Martin Merkli
