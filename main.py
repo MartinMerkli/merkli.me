@@ -410,7 +410,7 @@ def random_sleep():
 def hash_password(password, salt):
     return urlsafe_b64encode(pbkdf2_hmac('sha3_512', urlsafe_b64decode(environ['HASH_PEPPER_1']) + password.encode() +
                                          urlsafe_b64decode(environ['HASH_PEPPER_2']), urlsafe_b64decode(salt),
-                                         int(urlsafe_b64decode(environ['HASH_ITERATIONS']).decode()))).decode()
+                                         int(environ['HASH_ITERATIONS']))).decode()
 
 
 def hash_ip(ip):
@@ -1421,7 +1421,7 @@ def site_g21m_lernsets_aktualisieren_post():
         return error_403(error)
     if trigger_error is not None:
         return error_422(trigger_error)
-    db_nh.execute('insert into exercises values (?, ?, ?, ?, ?, ?, ?)',
+    db_nh.execute('insert into exercises values (?, ?, ?, ?, ?, ?)',
                   (ex_id, form_data['name'], form_data['subject'], acc, result[4], content))
     conn_nh.commit()
     url = '/g21m/lernen/' + ex_id
