@@ -626,6 +626,16 @@ def site_nutzungsbedingungen():
                            is_signed_in=not(acc is None))
 
 
+@app.route('/quelltext', methods=['GET'])
+def site_quelltext():
+    acc, name, mail, stylesheet = get_account(request.cookies, request.user_agent.string)
+    if acc is None:
+        account = '<p>Nicht angemeldet</p>'
+    else:
+        account = f"<p>Angemeldet als<br>{name}</p>"
+    return render_template('quelltext.html', stylesheet=stylesheet, account=account, is_signed_in=not(acc is None))
+
+
 ########################################################################################################################
 # ACCOUNT
 ########################################################################################################################
