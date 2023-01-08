@@ -1379,7 +1379,7 @@ def site_g21m_lernsets_neu_post():
     if trigger_error is not None:
         return error_422(trigger_error)
     db_nh.execute('insert into exercises values (?, ?, ?, ?, ?, ?)',
-                  (ex_id, form_data['name'], form_data['subject'], acc, cur_time, content))
+                  (ex_id, form_data['name'], form_data['subject'], acc, cur_time, json_dumps(content)))
     conn_nh.commit()
     url = '/g21m/lernen/' + ex_id
     g21m_activity(f"\"{name}\" hat das Lernset \"{form_data['name']}\" erstellt.", url)
