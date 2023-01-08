@@ -1418,7 +1418,7 @@ def site_g21m_lernsets_aktualisieren_post():
     try:
         content, trigger_error = upload_set(f, ex_id)
     except Exception as error:
-        return error_403(error)
+        return error_422(error)
     if trigger_error is not None:
         return error_422(trigger_error)
     db_nh.execute('insert into exercises values (?, ?, ?, ?, ?, ?)',
