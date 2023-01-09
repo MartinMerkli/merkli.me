@@ -145,7 +145,7 @@ function learn_next_exercise(){
     let ex_links = learn_sets[parts[0]]['exercises'][parts[1]]['links'];
     let display_links = '';
     for(let i = 0; i < ex_links.length; i++){
-        display_links += '<li><a href="' + ex_links[i] + '"></a></li>';
+        display_links += '<li><a href="' + ex_links[i] + '">' + ex_links[i] + '</a></li>';
     }
     learn_$('learn_exercise_links').innerHTML = display_links;
 
@@ -195,7 +195,7 @@ function learn_check_input(){
     let ex_links = learn_sets[parts[0]]['exercises'][parts[1]]['links'];
     let display_links = '';
     for(let i = 0; i < ex_links.length; i++){
-        display_links += '<li><a href="' + ex_links[i] + '"></a></li>';
+        display_links += '<li><a href="' + ex_links[i] + '">' + ex_links[i] + '</a></li>';
     }
     learn_$('learn_result_links').innerHTML = display_links;
 
@@ -225,7 +225,7 @@ function learn_check_input(){
     let ex_ans_links = learn_sets[parts[0]]['exercises'][parts[1]]['answer_links'];
     let display_ans_links = '';
     for(let i = 0; i < ex_ans_links.length; i++){
-        display_ans_links += '<li><a href="' + ex_ans_links[i] + '"></a></li>';
+        display_ans_links += '<li><a href="' + ex_ans_links[i] + '">' + ex_ans_links[i] + '</a></li>';
     }
     learn_$('learn_result_ans_links').innerHTML = display_ans_links;
 
