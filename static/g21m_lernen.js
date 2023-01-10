@@ -25,7 +25,7 @@ function learn_connection_error(status){
 // send stats
 function learn_send_answer(ex_id, answer, is_correct, ids){
     let string_ids = ids.join('-');
-    let url = '/nachhilfe/2lernen2/' + string_ids + '/' + ex_id + '/';
+    let url = '/g21m/lernsets/statistiken/' + string_ids + '/' + ex_id + '/';
     let parts = ex_id.split('_');
     let stats_id = learn_string_sets() + '_' + parts[1];
     if(is_correct){
