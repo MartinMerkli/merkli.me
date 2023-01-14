@@ -6,30 +6,25 @@
 
 
 from flask import Flask, redirect, make_response, request, render_template, session, send_from_directory, jsonify
-from time import time, sleep
-from os import urandom, environ, listdir, remove
+from time import sleep
+from os import urandom, environ
 from hashlib import pbkdf2_hmac
 from base64 import urlsafe_b64encode, urlsafe_b64decode
-from datetime import timedelta, date, datetime
-from json import load as json_load, dump as json_dump, loads as json_loads, dumps as json_dumps
-from os.path import exists, join, dirname, getsize
+from datetime import timedelta, datetime
+from json import load as json_load, loads as json_loads, dumps as json_dumps
+from os.path import exists, join, getsize
 from random import randint, uniform
 from ssl import create_default_context
 from smtplib import SMTP
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from threading import Lock
 from logging import basicConfig as log_basicConfig, INFO as LOG_INFO, getLogger as GetLogger, Formatter as LogFormatter
 from logging import FileHandler as LogFileHandler, StreamHandler as LogStreamHandler
 from hashlib import sha256
-from secrets import compare_digest
 from sqlite3 import connect as sqlite_connect
 from re import match as re_match
 from magic import from_file as type_from_file
 from werkzeug.utils import secure_filename
-from flask_apscheduler import APScheduler
-from urllib.request import Request, urlopen
-from bs4 import BeautifulSoup
 
 
 ########################################################################################################################
