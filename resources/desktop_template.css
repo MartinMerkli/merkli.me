@@ -116,12 +116,12 @@ a{
     padding: 16% 0;
     cursor: pointer;
 }
-.inex-icon-g21m{
-    background-image: url("/static/images/index_g21m.png");
+.index-icon_g21m{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("/static/images/index__g21m.png");
     background-size: cover;
 }
-.index-icon-zitateliste{
-    background-image: url("/static/images/index_zitateliste.jpeg");
+.index-icon_zitateliste{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url("/static/images/index__zitateliste.png");
     background-size: cover;
 }
 
