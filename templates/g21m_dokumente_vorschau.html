@@ -26,7 +26,7 @@
         <a href="/g21m/dokumente/herunterladen/{{ document_id }}" download="{{ document_download }}">Herunterladen</a> &ensp;
         <a href="/g21m/dokumente/download/{{ document_id }}" target="_blank">In neuem Tab öffnen</a> &ensp;
         {% if is_owner %}
-            <a href="/g21m/dokumente/download/{{ document_id }}">Bearbeiten</a> &ensp;
+            <a href="/g21m/dokumente/aktualisieren/{{ document_id }}">Bearbeiten</a> &ensp;
         {% endif %}
         <a href="/melden/dokument/{{ document_id }}"><small>unangebrachte Inhalte melden</small></a> &ensp;
         {% if allow_iframe %}
