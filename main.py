@@ -1103,7 +1103,8 @@ def folder_g21m_dokumente_vorschau(file):
         file_size //= 1000
         exponent += 1
     file_info = f"{_file_types.get(type_from_file(file_path, mime=True), '---')} {file_size}{_size_units[exponent]}"
-    document_download = secure_filename(result[1])
+    document_download = f"{secure_filename(result[1])}." \
+                        f"{_file_types.get(type_from_file(file_path, mime=True), 'BIN').lower()}"
     result2 = db_nh.execute('select id, content, owner, subject, posted from comments where subject=?', (file,)
                             ).fetchall()
     comments = []
@@ -1116,30 +1117,35 @@ def folder_g21m_dokumente_vorschau(file):
             return error_500('account conflict')
         allow_iframe = result3[0] == 1
     document_name = f"[{result[2]}] {result[1]}"
+    download = f"{result[0]}/{document_download}"
     return render_template('g21m_dokumente_vorschau.html', stylesheet=stylesheet, account=account,
                            is_signed_in=not(acc is None), document_name=document_name, file_info=file_info,
                            edited=result[4], created=result[5], owner=get_account_name(result[3]),
                            document_id=result[0], document_download=document_download, allow_iframe=allow_iframe,
-                           comments=comments, is_owner=(result[3] == acc))
+                           comments=comments, download=download, is_owner=(result[3] == acc))
 
 
-@app.route('/g21m/dokumente/download/<file>', methods=['GET'])
-def folder_g21m_dokumente_download(file):
-    result = db_nh.execute('select id, name from documents where id=?', (file.split('.')[0],)).fetchone()
-    if result is None:
-        return error_404('document not found')
-    file_path = join(app.root_path, 'g21m_documents', file.split('.')[0])
-    extension = _file_types.get(type_from_file(file_path, mime=True), 'BIN').lower()
-    return redirect('/g21m/dokumente/herunterladen/' + file + '.' + extension)
-
-
-@app.route('/g21m/dokumente/herunterladen/<file>', methods=['GET'])
-def folder_g21m_dokumente_herunterladen(file):
+@app.route('/g21m/dokumente/preview/<file>', methods=['GET'])
+def folder_g21m_dokumente_preview(file):
     result = db_nh.execute('select id, name from documents where id=?', (file.split('.')[0],)).fetchone()
     if result is None:
         return error_404('document not found')
     file_path = join(app.root_path, 'g21m_documents', file.split('.')[0])
     resp = make_response(send_from_directory(join(app.root_path, 'g21m_documents'), file.split('.')[0]))
+    resp.mimetype = type_from_file(file_path, mime=True)
+    return resp
+
+
+@app.route('/g21m/dokumente/herunterladen/<path:file>', methods=['GET'])
+def folder_g21m_dokumente_herunterladen(file):
+    document_id = file.split('/', 1)[0]
+    file_name = file.split('/', 1)[1]
+    result = db_nh.execute('select id, name from documents where id=?', (document_id,)).fetchone()
+    if result is None:
+        return error_404('document not found')
+    file_path = join(app.root_path, 'g21m_documents', document_id)
+    resp = make_response(send_from_directory(join(app.root_path, 'g21m_documents'), document_id, as_attachment=True,
+                                             download_name=file_name))
     resp.mimetype = type_from_file(file_path, mime=True)
     return resp
 
