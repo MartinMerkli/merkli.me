@@ -24,7 +24,7 @@
     <p class="centered">{{ file_info }} &ensp; Zuletzt bearbeitet am {{ edited }} &ensp; Erstellt am {{ created }} &ensp; Hochgeladen von <b>{{ owner }}</b> &ensp; <small><i>#{{ document_id }}</i></small></p>
     <p class="centered">
         <a href="/g21m/dokumente/herunterladen/{{ download }}" download="{{ document_download }}">Herunterladen</a> &ensp;
-        <a href="/g21m/dokumente/herunterladen/{{ download }}" target="_blank">In neuem Tab öffnen</a> &ensp;
+        <a href="/g21m/dokumente/preview/{{ document_id }}" target="_blank">In neuem Tab öffnen</a> &ensp;
         {% if is_owner %}
             <a href="/g21m/dokumente/aktualisieren/{{ document_id }}">Bearbeiten</a> &ensp;
         {% endif %}
