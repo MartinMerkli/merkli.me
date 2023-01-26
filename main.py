@@ -1307,6 +1307,10 @@ def folder_g21m_lernen(ids):
     for i in result2:
         if i[0] in ids:
             sets[i[0]] = {'name': f"[{i[2]}] {i[1]}", 'exercises': json_loads(i[3])}
+    if acc is not None:
+        latest = ' '.join(sets.keys())
+        db_nh.execute('update statistics set latest=? where account=?', (latest, acc))
+        conn_nh.commit()
     return render_template('g21m_lernen.html', stylesheet=stylesheet, account=account, is_signed_in=not(acc is None),
                            stats=stats, sets=sets)
 
