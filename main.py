@@ -581,6 +581,11 @@ def folder_melden(_type, _id):
         return error_401('neither GET nor POST')
 
 
+@app.route('/robots.txt')
+def file_robots():
+    return send_from_directory(join(app.root_path, 'resources'), 'robots.txt')
+
+
 ########################################################################################################################
 # LEGAL
 ########################################################################################################################
