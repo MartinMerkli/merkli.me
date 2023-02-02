@@ -25,6 +25,7 @@ from sqlite3 import connect as sqlite_connect
 from re import match as re_match
 from magic import from_file as type_from_file
 from werkzeug.utils import secure_filename
+from httpanalyzer import Request as AnalyzerRequest
 
 
 ########################################################################################################################
@@ -432,22 +433,21 @@ def scan_request(r):
     before = score
     
     if score < 3:
-        if user_agent in blacklist['useragent_text']:
+        instance = AnalyzerRequest({'accept': r.headers.get('Accept', ''),
+                                    'accept-encoding': r.headers.get('Accept-Encoding', ''),
+                                    'accept-language': r.headers.get('Accept-Languages', ''),
+                                    'connection': r.headers.get('Connection', ''),
+                                    'user-agent': user_agent},
+                                   ip, path, ['controlpanel'])
+        bot_rating = instance.bot()
+        search_rating = instance.search_engine()
+        malicious_rating = instance.malicious()
+        if (bot_rating > 0.8) and (search_rating < 0.5):
             score = min(score, 1)
-        for i in blacklist['useragent_part']:
-            if i in user_agent:
-                score = min(score, 1)
-        for i in blacklist['useragent_regex']:
-            if re_match(i, user_agent):
-                score = min(score, 1)
-        if path in blacklist['path_text']:
+        if malicious_rating > 0.5:
             score = min(score, 1)
-        for i in blacklist['path_part']:
-            if i in path:
-                score = min(score, 1)
-        for i in blacklist['path_regex']:
-            if re_match(i, path):
-                score = min(score, 1)
+        if malicious_rating > 0.9:
+            score = min(score, 0)
 
     if before != score:
         db_su.execute('update ipv4 set score = ? where address = ?', (score, ip))
