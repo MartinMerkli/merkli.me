@@ -22,7 +22,6 @@ from logging import basicConfig as log_basicConfig, INFO as LOG_INFO, getLogger 
 from logging import FileHandler as LogFileHandler, StreamHandler as LogStreamHandler
 from hashlib import sha256
 from sqlite3 import connect as sqlite_connect
-from re import match as re_match
 from magic import from_file as type_from_file
 from werkzeug.utils import secure_filename
 from httpanalyzer import Request as AnalyzerRequest
