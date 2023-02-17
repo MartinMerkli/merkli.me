@@ -24,7 +24,7 @@ from hashlib import sha256
 from sqlite3 import connect as sqlite_connect
 from magic import from_file as type_from_file
 from werkzeug.utils import secure_filename
-from httpanalyzer import Request as AnalyzerRequest
+from httpanalyzer import FlaskRequest as AnalyzerRequest
 
 
 ########################################################################################################################
@@ -432,12 +432,7 @@ def scan_request(r):
     before = score
     
     if score < 3:
-        instance = AnalyzerRequest({'accept': r.headers.get('Accept', ''),
-                                    'accept-encoding': r.headers.get('Accept-Encoding', ''),
-                                    'accept-language': r.headers.get('Accept-Languages', ''),
-                                    'connection': r.headers.get('Connection', ''),
-                                    'user-agent': user_agent},
-                                   ip, path, ['controlpanel'])
+        instance = AnalyzerRequest(r, ['controlpanel'])
         bot_rating = instance.bot()
         search_rating = instance.search_engine()
         malicious_rating = instance.malicious()
