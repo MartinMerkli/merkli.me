@@ -1411,6 +1411,7 @@ def site_g21m_lernsets_aktualisieren_post():
         if i not in form_data:
             return error_422('required field(s) in form is empty')
     ex_id = form_data['id']
+    cur_time = get_current_time().split('_')[0]
     result = db_nh.execute('select id, name, subject, owner, edited, content from exercises where id=?',
                            (ex_id,)).fetchone()
     if result is None:
@@ -1426,8 +1427,8 @@ def site_g21m_lernsets_aktualisieren_post():
         return error_422(error)
     if trigger_error is not None:
         return error_422(trigger_error)
-    db_nh.execute('insert into exercises values (?, ?, ?, ?, ?, ?)',
-                  (ex_id, form_data['name'], form_data['subject'], acc, result[4], json_dumps(content)))
+    db_nh.execute('update exercises set id=?, name=?, subject=?, owner=?, edited=?, content=? where id=?',
+                  (ex_id, form_data['name'], form_data['subject'], acc, cur_time, json_dumps(content), result[0]))
     conn_nh.commit()
     url = '/g21m/lernen/' + ex_id
     g21m_activity(f"\"{name}\" hat das Lernset \"{form_data['name']}\" aktualisiert.", url)
