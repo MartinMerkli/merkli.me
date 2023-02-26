@@ -1337,7 +1337,7 @@ def folder_g21m_lernsets_statistiken(ids, ex_id, toggle):
         stats[ex]['correct'] += 1
     else:
         stats[ex]['wrong'] += 1
-    db_nh.execute('update statistics set answers=? where account=?', (stats, acc))
+    db_nh.execute('update statistics set answers=? where account=?', (json_dumps(stats), acc))
     conn_nh.commit()
     return 'success', 200
 
