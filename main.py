@@ -23,7 +23,7 @@ from logging import FileHandler as LogFileHandler, StreamHandler as LogStreamHan
 from hashlib import sha256
 from sqlite3 import connect as sqlite_connect
 from magic import from_file as type_from_file
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename, escape as utils_escape
 from httpanalyzer import FlaskRequest as AnalyzerRequest
 
 
@@ -449,6 +449,10 @@ def scan_request(r):
     
     access_log.info(f'{hash_ip(ip)}\t{score}\t{int(is_signed_in(r.cookies))}\t{r.method}\t{path}\t{user_agent}')
     return score
+
+
+def escape(string):
+    return str(utils_escape(string))
 
 
 ########################################################################################################################
@@ -1306,6 +1310,15 @@ def folder_g21m_lernen(ids):
     for i in result2:
         if i[0] in ids:
             sets[i[0]] = {'name': f"[{i[2]}] {i[1]}", 'exercises': json_loads(i[3])}
+    value_keys = ['question', 'answer']
+    list_keys = ['answers', 'images', 'links', 'answer_images', 'answer_links']
+    for _, i0 in enumerate(sets):
+        for _, i1 in enumerate(sets[i0]['exercises']):
+            for i2 in value_keys:
+                sets[i0]['exercises'][i1][i2] = escape(sets[i0]['exercises'][i1][i2])
+            for i2 in list_keys:
+                for i3, _ in enumerate(sets[i0]['exercises'][i1][i2]):
+                    sets[i0]['exercises'][i1][i2][i3] = escape(sets[i0]['exercises'][i1][i2][i3])
     if acc is not None:
         latest = ' '.join(sets.keys())
         db_nh.execute('update statistics set latest=? where account=?', (latest, acc))
