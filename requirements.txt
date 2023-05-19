@@ -11,4 +11,4 @@ Werkzeug==2.3.4
 wheel==0.40.0
 Flask-APScheduler==1.12.4
 BeautifulSoup4==4.12.2
-httpanalyzer==0.1.4
+httpanalyzer==0.1.5
